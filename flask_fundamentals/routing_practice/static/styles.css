@@ -1,0 +1,35 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    text-align: center;
+}
+
+p{
+    padding: 25px;
+}
+
+div{
+    display: inline-block;
+    width: 300px;
+    min-height: 300px;
+    margin: 10px;
+    background-color: lightblue;
+}
+
+button{
+    padding: 25px 40px;
+    margin: 25px;
+}
+
+.death h1 {
+    font-size: 48px;
+    color: red;
+}
+
+.death h2 {
+    font-size: 36px;
+    color: orange;
+}

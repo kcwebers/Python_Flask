@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+    <title>The Shadow Box</title>
+</head>
+<body id="img">
+    <div class="container">
+    <h1 id="title_main" class="display-1 text-center border border-info mt-4">Welcome to </br> The Shadow Box!</h1>
+    <h4 class="text-center mt-3">The Place Where Everyone is a Friend!</h1>
+    <div class="row">
+    <div class="col shadow p-3 mr-2 mb-2 bg-dark">
+        <h1 class="text-info"> Registration </h1> 
+        <form class="form-control" action="/" method="post">
+            <div class="form-group">
+
+        <label for="name_input">First Name:</label>
+            <input type="name" name="fname" class="form-control">
+        {% with messages = get_flashed_messages(category_filter="first") %} <!-- declare a variable called messages -->
+            {% if messages %} <!-- check if there are any messages -->
+            <div class="alert-message block-message error">
+                {% for message in messages %} <!-- loop through the messages -->
+                <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                {% endfor -%}
+            </div>
+            {% endif %}
+        {% endwith %}
+
+
+        <label for="name_input">Last Name:</label>
+            <input type="name" name="lname" class="form-control">
+        {% with messages = get_flashed_messages(category_filter="second") %} <!-- declare a variable called messages -->
+            {% if messages %} <!-- check if there are any messages -->
+            <div class="alert-message block-message error">
+                {% for message in messages %} <!-- loop through the messages -->
+                <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                {% endfor -%}
+            </div>
+            {% endif %}
+        {% endwith %}
+
+
+        <label for="name_input">Email:</label>
+            <input type="email" name="email" class="form-control">
+            {% with messages = get_flashed_messages(category_filter="third") %} <!-- declare a variable called messages -->
+                {% if messages %} <!-- check if there are any messages -->
+                <div class="alert-message block-message error">
+                    {% for message in messages %} <!-- loop through the messages -->
+                    <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                    {% endfor -%}
+                </div>
+                {% endif %}
+            {% endwith %}
+
+
+        <label for="name_input">Password:</label>
+            <input type="password" name="password" class="form-control">
+            {% with messages = get_flashed_messages(category_filter="fourth") %} <!-- declare a variable called messages -->
+                {% if messages %} <!-- check if there are any messages -->
+                <div class="alert-message block-message error">
+                    {% for message in messages %} <!-- loop through the messages -->
+                    <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                    {% endfor -%}
+                </div>
+                {% endif %}
+            {% endwith %}
+
+
+        <label for="name_input">Password:</label>
+            <input type="password" name="conf_pass" class="form-control">
+            {% with messages = get_flashed_messages(category_filter="fifth") %} <!-- declare a variable called messages -->
+                {% if messages %} <!-- check if there are any messages -->
+                <div class="alert-message block-message error">
+                    {% for message in messages %} <!-- loop through the messages -->
+                    <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                    {% endfor -%}
+                </div>
+                {% endif %}
+            {% endwith %}
+                <button class="mt-2 btn btn-info">Submit</button>
+            </div>
+        </form>
+    </div> 
+
+    <!-- Login Section -->
+        
+    <div class="col shadow p-3 ml-2 mb-2 bg-dark">
+        <h1 class="text-info"> Login </h1> 
+        {% with messages = get_flashed_messages(category_filter="fail") %} <!-- declare a variable called messages -->
+            {% if messages %} <!-- check if there are any messages -->
+            <div class="alert-message block-message error">
+                {% for message in messages %} <!-- loop through the messages -->
+                <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                {% endfor -%}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <form class="form-control" action="/login" method="post">
+            <div class="form-group">
+
+        <label for="name_input">Email:</label>
+            <input type="email" name="email_input" class="form-control">
+            {% with messages = get_flashed_messages(category_filter="sixth") %} <!-- declare a variable called messages -->
+                {% if messages %} <!-- check if there are any messages -->
+                <div class="alert-message block-message error">
+                    {% for message in messages %} <!-- loop through the messages -->
+                    <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                    {% endfor -%}
+                </div>
+                {% endif %}
+            {% endwith %}
+
+
+        <label for="name_input">Password:</label>
+            <input type="password" name="password_input" class="form-control">
+            {% with messages = get_flashed_messages(category_filter="seventh") %} <!-- declare a variable called messages -->
+                {% if messages %} <!-- check if there are any messages -->
+                <div class="alert-message block-message error">
+                    {% for message in messages %} <!-- loop through the messages -->
+                    <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                    {% endfor -%}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <button class="mt-2 btn btn-info">Login</button>
+        </form>
+        </div>
+    </div>
+        
+    </div> <!-- div row end -->
+    </div> <!-- container end-->
+</body>
+</html>

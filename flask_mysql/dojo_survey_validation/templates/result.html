@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <title>Result Page</title>
+</head>
+<body>
+    <div class="container">
+    <h1 class="text-info"> Dojo Survey </h1>
+    <p><a class="btn btn-danger float-right" href="/">Add Student</a></p>
+
+    {% for student in single_student %}
+
+    <h2 class="text-primary">Student {{ student.id }}</h2>
+    <div class="form-control">
+            <p>Name:  <span class="float-right text-secondary">{{ student.name }}</span></p>
+            <p>Dojo Location: <span class="float-right text-secondary">{{ student.location }}</span></p>
+            <P>Favorite Language: <span class="float-right text-secondary">{{ student.language }}</span></P>
+            <p>Comment: <span class="float-right text-secondary">{{ student.comment }}</span></p>
+
+    {% endfor %}
+
+    </div>
+</body>
+</html>

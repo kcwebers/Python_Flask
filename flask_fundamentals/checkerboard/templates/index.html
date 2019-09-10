@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style> 
+    table tr td{
+    height: 50px;
+    width: 50px;
+    }
+    .color1 {
+        background-color: {{ color1 }};
+    }
+
+    .color0 {
+        background-color: {{ color0 }};
+    }
+    </style>
+    <title>Checkerboard</title>
+</head>
+
+<body>
+
+    <table>
+        {% for i in range(times): %}
+            <tr>
+                {% for j in range(width): %}
+                <td class='color{{ (i+j) % 2 }}'></td>
+                {% endfor %} 
+            </tr>
+
+        {% endfor %}
+ 
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 25px;
+    background-color: aquamarine;
+}
+
+p{
+    background-color: white;
+    padding: 10px;
+    border-radius: 3px;
+}
+.radio{
+    display: inline-block;
+    vertical-align: middle;
+}
+.form-control{
+    vertical-align: middle;
+}

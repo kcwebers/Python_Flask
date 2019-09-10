@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    
+    <title>Users</title>
+</head>
+<body>
+  <div class="container">
+    <h1 id="mainHead"> All Users!! </h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Updated On</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for one_user in all_users %}
+          <tr>
+            <th scope="row"> {{ one_user["id"] }} </th>
+            <td>{{ one_user["first_name"] + ' ' + one_user['last_name'] }}  </td>
+            <td>{{ one_user["email"] }}  </td>
+            <td>{{ one_user["created_at"] }}</td>
+            <td>{{ one_user["updated_at"] }}</td>
+            <td>
+                <a class="btn btn-info" href="/user/{{ one_user['id'] }}">Show</a> | <a class="btn btn-primary" href="/user/{{ one_user['id'] }}/edit">Edit</a> | <a class="btn btn-info" href="/user/{{ one_user['id'] }}/delete">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+      <a class="btn btn-info" href="/user/new">Add a New User</a>
+    </div>
+</body>
+</html>
+</html>

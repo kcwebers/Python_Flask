@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+    <title>Email Validation</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-info"> Fantasic Validations with DB!</h1>
+
+    {% with messages = get_flashed_messages(category_filter="first") %} <!-- declare a variable called messages -->
+        {% if messages %} <!-- check if there are any messages -->
+        <div class="bg-danger alert-message block-message error">
+            {% for message in messages %} <!-- loop through the messages -->
+            <p class="display-3 error text-center text-white">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+            {% endfor -%}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+
+    <form class="form-control" action="/" method="post">
+        <div class="form-group">
+            <label for="name_input">Please Enter Your Email:</label>
+            <input type="email" name="email" class="form-control">
+    {% with messages = get_flashed_messages(category_filter="second") %} <!-- declare a variable called messages -->
+        {% if messages %} <!-- check if there are any messages -->
+        <div class="alert-message block-message error">
+            {% for message in messages %} <!-- loop through the messages -->
+            <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+            {% endfor -%}
+        </div>
+        {% endif %}
+    {% endwith %}
+            <input type="submit" class="mt-2 btn btn-info">
+        </div>
+
+    </form>
+
+    </div>
+</body>
+</html>

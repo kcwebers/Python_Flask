@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    
+    <title>C + R Pets</title>
+</head>
+
+<body>
+    <h1> All The Pets!! </h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for one_pet in all_pets %}
+          <tr>
+            <th scope="row"> {{ one_pet["pet_id"] }} </th>
+            <td>{{ one_pet["name"] }}  </td>
+            <td>{{ one_pet["type"] }}  </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <h1 id="that">Add a Pet!</h1>
+      <form id="this" action="/add_pets" method="POST">
+          <p>Name:  <input type="text" name="name"></p>
+          <p>Type:  <input type="text" name="type"></p>
+          <input type="submit" value="Add">
+      </form>
+</body>
+</html>

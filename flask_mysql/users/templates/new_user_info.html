@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    
+    <title>User Infor</title>
+</head>
+
+<body>
+    <div class="container">
+        {% for one_user in all_users %}
+        <h1 id="mainHead">User {{ one_user['id'] }}</h1>
+    <div class="form-control">
+        <p><a class="btn btn-info float-right" href="/user">Home</a></p>
+            <p>Full Name:  {{ one_user["first_name"] + ' ' + one_user['last_name'] }}  </p>
+            <p>Email: {{ one_user['email'] }}</p>
+            <P>Created On: {{ one_user['created_at'] }}</P>
+            <p>Last Updated On: {{ one_user['updated_at'] }}</p>
+            <a class="btn btn-info" href="/user/{{ one_user['id'] }}/edit">Edit</a> | <a class="btn btn-info" href="/user/{{ one_user['id'] }}/delete">Delete</a>
+        {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+</html>

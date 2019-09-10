@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+    <title>Wall</title>
+</head>
+<body id="img">
+    <div class="container">
+        <div class="shadow p-3 mb-2 bg-white">
+            <a href="/logout" class="ml-2 mt-2 btn btn-info float-right text-white">Logout</a> 
+            <h5 class="mt-3 float-right"> Welcome to your wall, {{ session['name'] }}!</h5>
+            
+            <h1 id="for_title" class="mt-n2"> The Shadow Box </h1>
+            <h6 id="for_subtext" class="ml-5 mt-n4 text-light">Friends For All</h6>
+        </div>
+        
+
+    {% with messages = get_flashed_messages(category_filter="success") %} <!-- declare a variable called messages -->
+        {% if messages %} <!-- check if there are any messages -->
+        <div class="bg-info alert-message block-message error">
+            {% for message in messages %} <!-- loop through the messages -->
+            <p class="display-4 error text-center text-white">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+            {% endfor -%}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="shadow p-3 mb-2 bg-dark">
+        <h3 class="text-center text-info">What's happening today? Checkout your wall below!</h3>
+    </div>
+
+    <div id="wall">
+        <div class="row">
+            
+            <div class="col">
+                <div class="shadow p-3 mb-5 bg-white">
+                
+                    <h1 class="mb-5">
+
+                    {% if got_count != () %}
+                        <span class="text-danger">{{ got_count[0]['count'] }}</span>
+                        {% else %}
+                        <span class="text-danger">0</span>  
+                    {% endif %}       
+
+                        Message(s) for You</h1>
+                </div>
+                
+                <div id="left" class="shadow p-3 mb-5 bg-white">
+
+                    <div class="mr-5 ml-5">
+
+                    {% with messages = get_flashed_messages(category_filter="deleted") %} <!-- declare a variable called messages -->
+                        {% if messages %} <!-- check if there are any messages -->
+                        <div class="alert-message block-message error">
+                            {% for message in messages %} <!-- loop through the messages -->
+                            <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                            {% endfor -%}
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+
+        {% for msg in all_info %}
+                        <p hidden name="sender">{{ msg['recipients_id'] }}</p>
+
+                        <a class="btn float-right" href="/delete_message/{{ msg['messages.id'] }}"><img id="trash" src="{{ url_for('static', filename='trash.png') }}" alt="background"></a>  
+                                
+
+                        <p>{{ msg['first_name'] }} said 
+    <!-- Let's calculate the seconds vs/ other date time!
+    based on how many seconds, final output will produce only minutes/hours/weeks/etc ago -->                          
+        {% set timesince = (msg['time_diff']|string()) %}    
+            {% set new_time = (timesince|replace("-", "")) %} <!-- replace the negative in the string with nothing, effectively erasing-->
+        {% set calc = (new_time|int()) %}
+
+            {% if calc >= 0 and calc < 60 %}
+                {% set final_time = "Just a moment ago" %} 
+            {% elif calc >= 60 and calc < 3600 %}
+                {% set final_time = ((calc // 60)|string()) + " minutes ago" %} 
+            {% elif calc >= 3600 and calc < 86400 %}
+                {% set final_time = ((calc // 3600)|string()) + " hours ago" %}
+            {% elif calc >= 86400 and calc < 604800 %}
+                {% set final_time = ((calc // 86400)|string()) + " days ago" %}
+            {% elif calc >= 604800 and calc < 2629746 %}
+                {% set final_time = ((calc // 604800)|string()) + " weeks ago" %}
+            {% elif calc >= 2629746 and calc < 31556952 %}
+                {% set final_time = ((calc // 2629746)|string()) + " months ago" %}
+            {% elif calc >= 31556952 and calc < 3155760000 %}
+                {% set final_time = ((calc // 31556952)|string()) + " years ago" %}
+
+        {% endif %}
+                    <span class="text-info">({{ final_time }})</span>:</p>
+                        <p class="ml-4">"{{ msg['content'] }}"</p>
+
+        {% endfor %}     
+                            
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="shadow p-3 mb-5 bg-white">
+                    <h1> Send Messages? </h1>
+                    <h3> You have sent 
+
+                {% if sent_count != () %}
+                    <span class="text-danger">{{ sent_count[0]['count'] }}</span> 
+                    {% else %}
+                    <span class="text-danger">0</span>  
+                {% endif %} 
+
+                    messages so far</h3>
+                        
+                </div>
+                <div id="right" class="shadow p-3 mb-5 bg-white">
+                    {% with messages = get_flashed_messages(category_filter="m1") %} <!-- declare a variable called messages -->
+                        {% if messages %} <!-- check if there are any messages -->
+                        <div class="alert-message block-message error">
+                            {% for message in messages %} <!-- loop through the messages -->
+                            <p class="error text-danger small">{{ message }}</p>        <!-- display each message in a paragraph tag -->
+                            {% endfor -%}
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+
+                {% for one_other in all_else %}
+                    <form action="/send" method="post">
+                        <label for="textarea"><h1 class="mb-0 mt-1">{{ one_other['first_name']+ ' ' +one_other['last_name'] }}:</h1></label>
+
+                        <!-- Hidden Inputs for directing messages -->
+                            <input type="hidden" name="reciever" value="{{ one_other['id'] }}">
+                        {% for one in all_info %}
+                            <input type="hidden" name="sender" value="{{ one['recipients_id'] }}">
+                        {% endfor %}
+                        <!-- ------------------------------------ -->
+
+                        <button class="btn btn-info float-right mt-3 mr-2">Send</button>
+                    <textarea placeholder="Send them a message!" class="form-control" name="msg"></textarea>
+                    </form>  
+                {% endfor %}                 
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+    </div> <!-- end of container -->
+    
+</body>
+</html>

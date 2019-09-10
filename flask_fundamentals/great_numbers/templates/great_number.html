@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+    <title>Great Number Game</title>
+</head>
+<body>
+    <section id="mine" class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Welcome to the Great Number Game!</h1>
+          <p class="lead text-muted">I am thinking of a number between 1 and 100</p>
+          <p class="lead text-muted">Take a guess!</p>
+
+          <p>
+            <form action="/submit" method="post">
+                <input type="text" name="your_input"></br>
+                <input type="submit" value="Submit!" id="meButton" class="btn btn-primary my-2">
+            </form>
+          </p>
+          
+        </div>
+      </section>
+</body>
+</html>

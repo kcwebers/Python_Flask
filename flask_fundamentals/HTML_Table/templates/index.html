@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <title>HTML Table</title>
+</head>
+<body>
+    <table class="table">
+       <thread class="thread-light">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Full Name</th>
+        </tr>
+        {% for i in range(length): %}
+        <tr>
+            <td>{{ input_info[i].first_name }}</td>
+            <td>{{ input_info[i].last_name }}</td>
+            <td>{{ input_info[i].first_name + ' ' + input_info[i].last_name }}</td>
+        </tr>
+        {%  endfor %}
+    </thread>
+    </table>
+    
+</body>
+</html>

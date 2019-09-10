@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>Input Page</title>
+</head>
+<body>
+    <div class="container">
+    <h1> Dojo Survey </h1>
+    <form action="/result" method="post">
+        <div class="form-group">
+            <label for="name_input">Your Name:</label>
+            <input type="name" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="location_choice">Dojo Location:</label>
+                <select class="form-control" name="location" type="submit">
+                    <option>San Jose</option>
+                    <option>Berkeley</option>
+                    <option>San Francisco</option>
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="language_choice">Favorite Language:</label>
+                <select class="form-control" name="language" type="submit">
+                        <option>Python</option>
+                        <option>JavaScript</option>
+                        <option>CSS</option>
+                        <option>HTML</option>
+                </select> 
+        </div>
+        <div class="form-group radio">
+            <label for="happiness_level">Happiness Level:</label>
+                <input class="form-control" name="happy" type="radio"><p>Happy</p>
+                <input class="form-control" name="happy" type="radio"><p>Super Happy</p>
+                <input class="form-control" name="happy" type="radio"><p>Extremely Happy</p>
+        </div>
+        <div class="form-group">
+            <label for="comment_area">Comment (optional):</label>
+                <textarea type="text" class="form-control" name="comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Button</button>
+    </form>
+    </div>
+</body>
+</html>

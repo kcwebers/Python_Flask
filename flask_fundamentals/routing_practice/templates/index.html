@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        <meta charset="utf-8">
+        <title> Index </title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+   </head>
+   <body>
+         <h1> !!Choose Your Adventure!! </h1>
+         <div>
+            <p>Make your choice below</p>
+            <form action="/left">
+                  <button>Go Left?</button>
+            </form>
+            <form action="/right">
+                  <button>Go Right?</button>
+            </form>
+            
+         </div>   
+
+   </body>
+</html>
