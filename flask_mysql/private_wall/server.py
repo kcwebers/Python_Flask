@@ -6,7 +6,7 @@ from datetime import datetime
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PASS_REGEX = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$')
-# Password matching expression. Password must be at least 8 characters, no more than 8 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.
+# Password matching expression. Password must be at least 8 characters, no more than 15 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.
 
 app = Flask(__name__)
 
@@ -168,7 +168,7 @@ def sendMessage():
         data = {
             'msg': request.form['msg'],
             'reciever': request.form['reciever'],
-            'sender': request.form['sender']
+            'sender': session['id']
         }
         new_user_id = mysql.query_db(query, data)
 

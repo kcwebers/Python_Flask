@@ -129,13 +129,10 @@
 
                 {% for one_other in all_else %}
                     <form action="/send" method="post">
-                        <label for="textarea"><h1 class="mb-0 mt-1">{{ one_other['first_name']+ ' ' +one_other['last_name'] }}:</h1></label>
+                        <label for="textarea"><h1 class="mb-0 mt-1">{{ one_other['first_name']+ ' ' + one_other['last_name'] }}:</h1></label>
 
                         <!-- Hidden Inputs for directing messages -->
                             <input type="hidden" name="reciever" value="{{ one_other['id'] }}">
-                        {% for one in all_info %}
-                            <input type="hidden" name="sender" value="{{ one['recipients_id'] }}">
-                        {% endfor %}
                         <!-- ------------------------------------ -->
 
                         <button class="btn btn-info float-right mt-3 mr-2">Send</button>
