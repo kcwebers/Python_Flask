@@ -14,7 +14,7 @@ def index():
 @app.route('/submit', methods=['POST'])
 def youPick():
     if 'count' in session:
-        session['count'] = session['count'] + 1
+        session['count'] = session.get('count') + 1
     else:
         session['count'] = 1
 
