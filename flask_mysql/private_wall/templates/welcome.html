@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
 
-    <title>Wall</title>
+    <title>The Shadow Box</title>
 </head>
 <body id="img">
     <div class="container">
@@ -71,12 +71,14 @@
                                 
 
                         <p>{{ msg['first_name'] }} said 
+
     <!-- Let's calculate the seconds vs/ other date time!
     based on how many seconds, final output will produce only minutes/hours/weeks/etc ago -->                          
         {% set timesince = (msg['time_diff']|string()) %}    
             {% set new_time = (timesince|replace("-", "")) %} <!-- replace the negative in the string with nothing, effectively erasing-->
         {% set calc = (new_time|int()) %}
 
+        <!-- will calculate the time since posting up to 100 years! -->
             {% if calc >= 0 and calc < 60 %}
                 {% set final_time = "Just a moment ago" %} 
             {% elif calc >= 60 and calc < 3600 %}
