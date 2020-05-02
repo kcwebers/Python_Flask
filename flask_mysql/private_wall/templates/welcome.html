@@ -93,6 +93,8 @@
                 {% set final_time = ((calc // 2629746)|string()) + " months ago" %}
             {% elif calc >= 31556952 and calc < 3155760000 %}
                 {% set final_time = ((calc // 31556952)|string()) + " years ago" %}
+        
+        <!-- end of time calculator -->  
 
         {% endif %}
                     <span class="text-info">({{ final_time }})</span>:</p>
